@@ -1,0 +1,36 @@
+[
+  {
+    "label": "方法/工具",
+    "children": [
+      {
+        "label": "vue 相关",
+        "path": "/vuePt"
+      },
+      {
+        "label": "算法相关",
+        "path": "/algorithm"
+      },
+      {
+        "label": "按钮权限方案",
+        "path": "/control"
+      },
+      {
+        "label": "服务器渲染方案",
+        "path": "/devRender"
+      }
+    ]
+  },
+  {
+    "label": "组件",
+    "children": [
+      {
+        "label": "treeZ 树形组件",
+        "path": "/treeZ"
+      },
+      {
+        "label": "monthZ 单月日历",
+        "path": "/monthZ"
+      }
+    ]
+  }
+]
