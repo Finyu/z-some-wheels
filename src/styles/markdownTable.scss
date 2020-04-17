@@ -1,0 +1,22 @@
+.showMainBody table{
+  tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    th, td {
+      text-align: left;
+      white-space: nowrap;
+      color: #909399;
+      font-weight: 400;
+      border-bottom: 1px solid #dcdfe6;
+      padding: 15px;
+      max-width: 250px;
+    }
+  }
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #fff;
+  font-size: 14px;
+  margin-bottom: 45px;
+  line-height: 1.5em;
+}

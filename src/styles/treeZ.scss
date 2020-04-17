@@ -1,0 +1,31 @@
+.z-tree{
+  .z-tree-itemBox-list{
+    padding-left: 20px;
+    // transition: all 0.2s;
+    overflow: hidden;
+    display: block;
+  }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  img {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+  }
+  p {
+    margin: 0;
+    cursor: pointer;
+  }
+  // .z-tree-dataBox-list-open {
+  //   background-color: #888888;
+  // }
+}

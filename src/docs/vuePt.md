@@ -1,4 +1,4 @@
-```shell
+<!-- ```shell
 import axios from 'axios'
 import qs from 'qs'
 import { Message } from 'element-ui'
@@ -45,4 +45,4 @@ export function fetch (options) {
       })
   })
 }
-```
+``` -->

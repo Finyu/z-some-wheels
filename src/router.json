@@ -1,10 +1,14 @@
 [
   {
-    "label": "方法/工具",
+    "label": "方法/工具/方案",
     "children": [
       {
         "label": "vue 相关",
         "path": "/vuePt"
+      },
+      {
+        "label": "一些工具",
+        "path": "/someUilt"
       },
       {
         "label": "算法相关",
@@ -24,12 +28,12 @@
     "label": "组件",
     "children": [
       {
-        "label": "treeZ 树形组件",
-        "path": "/treeZ"
+        "label": "zTree 树形组件",
+        "path": "/zTree"
       },
       {
-        "label": "monthZ 单月日历",
-        "path": "/monthZ"
+        "label": "zMonth 单月日历",
+        "path": "/zMonth"
       }
     ]
   }

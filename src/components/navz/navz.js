@@ -1,9 +1,15 @@
 export default {
   data(){
     return {
+      routePath: null
     }
   },
   props: ['routerData'],
+  watch: {
+    $route(nv, ov) {
+      this.routePath = nv.path
+    }
+  },
   render:function(creatElement){
     let that = this
     // 渲染子路由导航
@@ -27,7 +33,10 @@ export default {
               return creatElement(
                 'p',
                 {
-                  class: 'Z-nav-common',
+                  class: {
+                    'Z-nav-common': true,
+                    'is-route': that.routePath == todo.path
+                  },
                   style: {
                     'width': '220px',
                   },
@@ -35,7 +44,21 @@ export default {
                     click: () => {that.handleSelect(todo.path)}
                   }
                 },
-                todo.label
+                todo.label.split('').map( (nape, index) => {
+                  return creatElement(
+                    'span',
+                    {
+                      class: 'transformDelay',
+                      attrs: {
+                        'data-text': nape
+                      },
+                      style: {
+                        'transition-delay': index * 0.05 + 's',
+                      }
+                    },
+                    nape
+                  )
+                })
               )
             })
           ]

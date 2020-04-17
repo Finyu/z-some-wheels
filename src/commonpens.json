@@ -8,6 +8,10 @@
     "com": "vuePt"
   },
   {
+    "label": "一些工具",
+    "com": "someUilt"
+  },
+  {
     "label": "算法相关",
     "com": "algorithm"
   },
@@ -20,11 +24,11 @@
     "com": "devRender"
   },
   {
-    "label": "treeZ 树形组件",
-    "com": "treeZ"
+    "label": "zTree 树形组件",
+    "com": "zTree"
   },
   {
-    "label": "monthZ 单月日历",
-    "com": "monthZ"
+    "label": "zMonth 单月日历",
+    "com": "zMonth"
   }
 ]

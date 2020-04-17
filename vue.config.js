@@ -49,16 +49,20 @@ module.exports = {
   },
   configureWebpack: config => {
     config.module.rules.push({
-      // 处理markdown文件
-      test: /\.md$/,
-      use: [
-        {
-          loader: "vue-loader"
-        },
-        {
-          loader: require.resolve("./build/markdownLoader")
-        }
-      ],
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                preserveWhitespace: false
+              }
+            }
+          },
+          {
+            loader: path.resolve(__dirname, './build/md-loader/index.js')
+          }
+        ]
     })
     return {
       // provide the app's title in webpack's name field, so that

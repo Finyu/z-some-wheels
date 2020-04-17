@@ -1,1 +1,25 @@
+*{
+  margin: 0;
+}
+h1,h2,h3,h4,h5 {
+  line-height: 76px;
+}
+.showMainBody {
+  p{
+    margin: 10px 0;
+  }
+  li {
+    margin: 10px 0;
+  }
+}
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+// markdown锚点隐藏
+.header-anchor {
+  display: none;
+}
 @import './markdown.scss';
+@import './treeZ.scss';
+@import './monthZ.scss';
+@import './markdownTable.scss';
