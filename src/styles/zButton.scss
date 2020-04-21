@@ -1,0 +1,333 @@
+.z-btn-1 {
+  --hue: 190;
+  position: relative;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: hsl(190, 100%, 41%);
+  border: 1px solid hsl(190, 100%, 41%);
+  outline: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.25s;
+
+  &:hover {
+    background: hsl(190, 100%, 31%);
+  }
+
+  &-primary {
+    --hue: 187;
+  }
+
+  &-ghost {
+    color: hsl(190, 100%, 41%);
+    background-color: transparent;
+    border-color: hsl(190, 100%, 41%);
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &-shine {
+    color: white;
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        hsla(190, 100%, 41%, 0.5),
+        transparent
+      );
+      transform: translateX(-100%);
+      transition: 0.6s;
+    }
+
+    &:hover {
+      background: transparent;
+      box-shadow: 0 0 20px 10px hsla(190, 100%, 41%, 0.5);
+    }
+
+    &:hover::before {
+      transform: translateX(100%);
+    }
+  }
+}
+
+
+.z-btn-2 {
+  --hue: 190;
+  --ease-in-duration: 0.25s;
+  --ease-in-exponential: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-out-duration: 0.65s;
+  --ease-out-delay: var(--ease-in-duration);
+  --ease-out-exponential: cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  background-color: hsl(190, 100%, 41%);
+  border: 1px solid hsl(190, 100%, 41%);
+  outline: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.25s;
+
+  &:hover {
+    background: hsl(190, 100%, 31%);
+  }
+
+  &-primary {
+    --hue: 171;
+  }
+
+  &-ghost {
+    color: white;
+    background-color: transparent;
+    border-color: hsl(190, 100%, 41%);
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &-border-stroke {
+    border-color: hsla(190, 100%, 41%, 0.35);
+
+    .z-btn-borders {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      .z-btn-border-top {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 1px;
+        background: hsl(190, 100%, 41%);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .z-btn-border-right {
+        position: absolute;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: hsl(190, 100%, 41%);
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      .z-btn-border-bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background: hsl(190, 100%, 41%);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .z-btn-border-left {
+        position: absolute;
+        left: 0;
+        width: 1px;
+        height: 100%;
+        background: hsl(190, 100%, 41%);
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+
+      // when unhover, ease-out left, bottom; ease-in right, top
+
+      .z-btn-border-left {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+      .z-btn-border-bottom {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+
+      .z-btn-border-right {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+      .z-btn-border-top {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+    }
+
+    &:hover {
+      color: hsl(190, 100%, 41%);
+      background: transparent;
+
+      .z-btn-border-top,
+      .z-btn-border-bottom {
+        transform: scaleX(1);
+      }
+      .z-btn-border-left,
+      .z-btn-border-right {
+        transform: scaleY(1);
+      }
+
+      // when hover, ease-in left, bottom; ease-out right, top
+
+      .z-btn-border-left {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+      .z-btn-border-bottom {
+        transition: var(--ease-in-duration) var(--ease-in-exponential);
+      }
+
+      .z-btn-border-right {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+      .z-btn-border-top {
+        transition: var(--ease-out-duration) var(--ease-out-delay)
+          var(--ease-out-exponential);
+      }
+    }
+  }
+
+}
+
+
+@function sample($list) {
+  @return nth($list, random(length($list)));
+}
+
+@function bubbles($color, $count: 16) {
+  $bubbles: ();
+  // define your own bubbles here!
+  $bubble-types: (
+    radial-gradient(circle, $color 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, $color 20%, transparent 30%)
+  );
+  @for $i from 1 through $count {
+    $bubbles: append($bubbles, sample($bubble-types), comma);
+  }
+  @return $bubbles;
+}
+
+@function random_range($min, $max) {
+  $rand: random();
+  $random_range: $min + floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+@function random_sizes($count: 16) {
+  $sizes: ();
+  @for $i from 1 through $count {
+    $sizes: append(
+      $sizes,
+      (random_range(10, 20) * 1%) (random_range(10, 20) * 1%),
+      comma
+    );
+  }
+  @return $sizes;
+}
+
+.z-btn-3 {
+  --hue: 190;
+  --btn-bg-color: hsl(12, 100%, 50%);
+  --btn-bg-color-darker: hsl(20, 100%, 45%);
+  position: relative;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: Lato, sans-serif;
+  color: white;
+  text-decoration: none;
+  background-color: var(--btn-bg-color);
+  border: 1px solid var(--btn-bg-color);
+  border-radius: 4px;
+  box-shadow:
+  0 0.1px 0.7px rgba(233, 30, 99, 0.141),
+  0 0.1px 1.7px rgba(233, 30, 99, 0.202),
+  0 0.3px 3.1px rgba(233, 30, 99, 0.25),
+  0 0.4px 5.6px rgba(233, 30, 99, 0.298),
+  0 0.8px 10.4px rgba(233, 30, 99, 0.359),
+  0 2px 25px rgba(233, 30, 99, 0.5)
+;
+  outline: transparent;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.25s;
+
+  &-pink {
+    --hue: 330;
+  }
+
+  &-bubbles {
+    overflow: visible;
+    transition: transform ease-in 0.1s, background-color ease-in 0.1s,
+      box-shadow ease-in 0.25s;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: -2em;
+      right: -2em;
+      top: -2em;
+      bottom: -2em;
+      transition: ease-in-out 0.5s;
+      background-repeat: no-repeat;
+      background-image: bubbles(var(--btn-bg-color));
+      background-size: random_sizes();
+      background-position: 18% 40%, 20% 31%, 30% 30%, 40% 30%, 50% 30%, 57% 30%,
+        65% 30%, 80% 32%, 15% 60%, 83% 60%, 18% 70%, 25% 70%, 41% 70%, 50% 70%,
+        64% 70%, 80% 71%;
+      animation: bubbles ease-in-out 0.75s forwards;
+    }
+
+    &:active {
+      transform: scale(0.95);
+      background: var(--btn-bg-color-darker);
+
+      &::before {
+        // when the clicked mouse is up, trigger the animation.
+        animation: none;
+        background-size: 0;
+      }
+    }
+  }
+}
+
+@keyframes bubbles {
+  0% {
+    background-position: 18% 40%, 20% 31%, 30% 30%, 40% 30%, 50% 30%, 57% 30%,
+      65% 30%, 80% 32%, 15% 60%, 83% 60%, 18% 70%, 25% 70%, 41% 70%, 50% 70%,
+      64% 70%, 80% 71%;
+  }
+
+  50% {
+    background-position: 10% 44%, 0% 20%, 15% 5%, 30% 0%, 42% 0%, 62% -2%,
+      75% 0%, 95% -2%, 0% 80%, 95% 55%, 7% 100%, 24% 100%, 41% 100%, 55% 95%,
+      68% 96%, 95% 100%;
+  }
+
+  100% {
+    background-position: 5% 44%, -5% 20%, 7% 5%, 23% 0%, 37% 0, 58% -2%, 80% 0%,
+      100% -2%, -5% 80%, 100% 55%, 2% 100%, 23% 100%, 42% 100%, 60% 95%, 70% 96%,
+      100% 100%;
+    background-size: 0% 0%;
+  }
+}

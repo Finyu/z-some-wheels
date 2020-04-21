@@ -1,4 +1,4 @@
-### treeZ树形组件
+### zTree树形组件
 
 支持多项默认展开,添加了logo图片
 
@@ -25,6 +25,7 @@
   export default {
     data() {
       return {
+        aaa: false,
         options: [{
           label: '黄金糕',
           children: [

@@ -30,5 +30,13 @@
   {
     "label": "zMonth 单月日历",
     "com": "zMonth"
+  },
+  {
+    "label": "fullScreen 全屏",
+    "com": "fullScreen"
+  },
+  {
+    "label": "zButton 按钮",
+    "com": "zButton"
   }
 ]

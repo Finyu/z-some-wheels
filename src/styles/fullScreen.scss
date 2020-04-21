@@ -1,0 +1,21 @@
+.fullScreen-mark {
+  transition: all 0.3s
+}
+.fullScreen-open {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(100,100,100,0.3);
+  z-index: 9;
+  left: 0;
+  top: 0;
+  .fullScreen-Content {
+    position: absolute;
+    border: white 1px solid;
+    padding: 20px;
+  }
+}

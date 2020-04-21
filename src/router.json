@@ -28,12 +28,20 @@
     "label": "组件",
     "children": [
       {
+        "label": "zButton 按钮",
+        "path": "/zButton"
+      },
+      {
         "label": "zTree 树形组件",
         "path": "/zTree"
       },
       {
         "label": "zMonth 单月日历",
         "path": "/zMonth"
+      },
+      {
+        "label": "fullScreen 全屏",
+        "path": "/fullScreen"
       }
     ]
   }
