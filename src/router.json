@@ -32,6 +32,10 @@
         "path": "/zButton"
       },
       {
+        "label": "zPiechart 简易饼图",
+        "path": "/zPiechart"
+      },
+      {
         "label": "zTree 树形组件",
         "path": "/zTree"
       },

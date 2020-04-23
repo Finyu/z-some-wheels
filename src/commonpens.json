@@ -38,5 +38,9 @@
   {
     "label": "zButton 按钮",
     "com": "zButton"
+  },
+  {
+    "label": "zPiechart 简易饼图",
+    "com": "zPiechart"
   }
 ]

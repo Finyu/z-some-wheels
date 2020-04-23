@@ -2,9 +2,10 @@ import Vue from 'vue'
 import zTree from './zTree/index.js'
 import zButton from './zButton/index.js'
 import zMonth from './zMonth/index.js'
+import zPiechart from './zPiechart/index.js'
 import fullScreen from './fullScreen/index.js'
 
-const components =  [zTree, zMonth, zButton]
+const components =  [zTree, zMonth, zButton, zPiechart]
 
 const install = function(Vue, opts = {}) {
   components.forEach(component => {
@@ -21,5 +22,7 @@ if (typeof window !== 'undefined' ) {
 export default {
   version: '1.0.0',
   zTree,
-  zMonth
+  zMonth,
+  zButton,
+  zPiechart
 }
