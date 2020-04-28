@@ -7,8 +7,16 @@ export default {
       required: true,
     },
     'total': {
-      ype: Number,
+      type: Number,
       default: 100,
+    },
+    'firstAnimate': {
+      type: Boolean,
+      default: false,
+    },
+    'animated': {
+      type: Boolean,
+      default: false,
     }
   },
   render: function(h) {
@@ -16,8 +24,8 @@ export default {
       'div', {
         class: {
           'z-piechart': true,
-          'z-piechart-animated': this.animated,
-          'z-piechart-firstAnimate': this.firstAnimate,
+          'z-piechart-animated': CSS.registerProperty && this.animated && this.animateState,
+          'z-piechart-firstAnimate': CSS.registerProperty && this.firstAnimate,
         },
         style: {
           '--gauge-value': this.value,
@@ -27,12 +35,23 @@ export default {
       }
     )
   },
+  data (){
+    return {  animateState: false  }    
+  },
+  watch: {
+    value(){
+      clearTimeout(window.zPiecharttimer)
+      this.animateState = true
+      window.zPiecharttimer = setTimeout(() => {
+        this.animateState = false
+      }, 500)
+    }
+  },
   methods: {
     click(){
       this.$emit('onClick')
     }
   },
   mounted () {
-    console.log(this.firstAnimate)
   }
 }
