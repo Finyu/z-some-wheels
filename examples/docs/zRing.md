@@ -1,11 +1,4 @@
-### zPiechart 简易饼图
-
-用css3实现的简易饼图
-
-！！！本组件兼容要求较高
-
-[can i use](https://caniuse.com/#search=conic-gradient)
-
+## zRing炫酷旋转背景
 
 ### 用法
 
@@ -13,39 +6,37 @@
 :::demo 
 ```html
 <template>
-  <z-piechart
-  @onClick='handleNodeClick'
-  :value='value'>
-
-  </z-piechart>
+  <z-ring  @dateClick='dateClick' :month="'2019-1'"></z-ring>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        value: 80,
       }
     },
     methods:{
-      handleNodeClick(data){
-        this.value ++
+      dateClick(data){
+        console.log(data)
       }
-    }
+    },
+    computed: {},
   }
 </script>
 
+<style lang='scss'>
+</style>
 
 ```
 :::
 
+
 ### 参数
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
-| value | 数据值 | Nember | - | — |
-| total | 总数 | Nember | - | 100 |
+| month | 渲染的月份如：2019-1 | string | — | --- |
 
 ### 事件
 | 参数      | 说明          | 类型      | 返回值  |
 |---------- |-------------- |----------  |-------- |
-| onClick | 点击按钮触发 | function |  - |
+| dateClick | 点击日期对象触发 | function |  具体日期如： 2019-1-1 |

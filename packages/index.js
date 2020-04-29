@@ -4,8 +4,9 @@ import zButton from './zButton/index.js'
 import zMonth from './zMonth/index.js'
 import zPiechart from './zPiechart/index.js'
 import fullScreen from './fullScreen/index.js'
+import zRing from './zRing/index.js'
 
-const components =  [zTree, zMonth, zButton, zPiechart]
+const components =  [zTree, zMonth, zButton, zPiechart, zRing]
 
 const install = function(Vue, opts = {}) {
   components.forEach(component => {

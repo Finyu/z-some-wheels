@@ -46,6 +46,10 @@
       {
         "label": "fullScreen 全屏",
         "path": "/fullScreen"
+      },
+      {
+        "label": "zRing 旋转背景",
+        "path": "/zRing"
       }
     ]
   }

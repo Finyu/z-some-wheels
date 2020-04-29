@@ -11,7 +11,7 @@ import App from './App'
 import router from './router/index'
 
 
-import ZsomeWheels from './components/index.js'
+import ZsomeWheels from './../packages/index.js'
 Vue.use(ZsomeWheels)
 
 // markdown demo组件

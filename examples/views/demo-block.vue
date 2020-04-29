@@ -181,7 +181,7 @@
 </style>
 
 <script type="text/babel">
-  import Element from '../components/index.js';
+  import Element from '../../packages/index.js';
   import { stripScript, stripStyle, stripTemplate } from '../util';
   const { version } = Element;
 

@@ -1,6 +1,6 @@
 'use strict'
 const path = require('path')
-const defaultSettings = require('./src/settings.js')
+const defaultSettings = require('./examples/settings.js')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -30,6 +30,13 @@ module.exports = {
   // lintOnSave: process.env.NODE_ENV === 'development',
   lintOnSave: false,
   productionSourceMap: false,
+  pages: {
+    index: {
+      entry: "examples/main.js",
+      template: "public/index.html",
+      filename: "index.html"
+    }
+  },
   devServer: {
     port: port,
     open: true,
@@ -70,7 +77,7 @@ module.exports = {
       name: name,
       resolve: {
         alias: {
-          '@': resolve('src')
+          '@': resolve('examples')
         }
       },
       externals: {
@@ -84,13 +91,25 @@ module.exports = {
     config.plugins.delete('prefetch') // TODO: need test
     // set svg-sprite-loader
     config.module
+      .rule('js')
+      .include
+        .add('/packages/')
+        .end()
+      .use('babel')
+        .loader('babel-loader')
+        .tap(options => {
+          // 修改它的选项...
+          return options
+        })
+
+    config.module
       .rule('svg')
-      .exclude.add(resolve('src/icons'))
+      .exclude.add(resolve('examples/icons'))
       .end()
     config.module
       .rule('icons')
       .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
+      .include.add(resolve('examples/icons'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
@@ -144,7 +163,7 @@ module.exports = {
                 },
                 commons: {
                   name: 'chunk-commons',
-                  test: resolve('src/components'), // can customize your rules
+                  test: resolve('examples/components'), // can customize your rules
                   minChunks: 3, //  minimum common number
                   priority: 5,
                   reuseExistingChunk: true

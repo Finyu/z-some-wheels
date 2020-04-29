@@ -1,0 +1,47 @@
+.z-piechart {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --Zcolor1: hsl(196, 78%, 61%);
+  --Zcolor2:hsl(196, 78%, 81%);
+  --percentage: calc(var(--gauge-value) / var(--gauge-max-value) * 100%);
+  background: conic-gradient(var(--Zcolor1)  var(--percentage),var(--Zcolor2) 0);
+  counter-reset: value var(--gauge-value);
+  &::before {
+    position: absolute;
+    content: counter(value);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    color: black;
+    background: white;
+    border-radius: inherit;
+  }
+  &-firstAnimate {
+    --Zpos: 0%;
+    animation: render 2s ease-in 1 forwards;
+    background: conic-gradient(var(--Zcolor1) var(--Zpos),var(--Zcolor2) 0);
+  }
+  &-animated {
+    --Zpos: 0%;
+    background: conic-gradient(var(--Zcolor1) var(--Zpos),var(--Zcolor2) 0);
+    animation: render2 .5s ease-in 1 forwards;
+  }
+  @keyframes render {
+    to {
+      --Zpos: var(--percentage);
+    }
+  }
+  @keyframes render2 {
+    to {
+      --Zpos: var(--percentage);
+    }
+  }
+}
+

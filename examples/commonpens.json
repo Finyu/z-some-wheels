@@ -42,5 +42,9 @@
   {
     "label": "zPiechart 简易饼图",
     "com": "zPiechart"
+  },
+  {
+    "label": "zRing 旋转背景",
+    "com": "zRing"
   }
 ]
