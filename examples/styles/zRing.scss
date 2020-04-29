@@ -2,7 +2,7 @@
   position: relative;
   min-width: 20px;
   min-height: 20px;
-  background: black;
+  background: inherit;
   border-radius: 50%;
   animation: spin 2s linear infinite;
 
@@ -18,11 +18,11 @@
   }
 
   &::before {
-    filter: blur(5px);
+    filter: blur(3px);
   }
 
   &::after {
-    filter: blur(10px);
+    filter: blur(6px);
   }
 }
 

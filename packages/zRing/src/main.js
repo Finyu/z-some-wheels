@@ -10,7 +10,7 @@ export default {
   },
   render: function(h) {
     return h(
-      'button', {
+      'div', {
         class: 'z-ring',
         style: {
           'box-shadow': `inset 0.5em -0.5em ${this.bkColor}`
