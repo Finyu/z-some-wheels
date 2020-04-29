@@ -6,10 +6,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  --Zcolor1: hsl(196, 78%, 61%);
-  --Zcolor2:hsl(196, 78%, 81%);
+  --gauge-color: hsl(196, 78%, 61%);
+  --gauge-color-lighter:hsl(196, 78%, 81%);
   --percentage: calc(var(--gauge-value) / var(--gauge-max-value) * 100%);
-  background: conic-gradient(var(--Zcolor1)  var(--percentage),var(--Zcolor2) 0);
+  transition: all 5s;
+  background: conic-gradient(var(--gauge-color) 0 var(--percentage),var(--gauge-color-lighter) 0 100%);
   counter-reset: value var(--gauge-value);
   &::before {
     position: absolute;
@@ -17,31 +18,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     color: black;
     background: white;
     border-radius: inherit;
   }
-  &-firstAnimate {
-    --Zpos: 0%;
-    animation: render 2s ease-in 1 forwards;
-    background: conic-gradient(var(--Zcolor1) var(--Zpos),var(--Zcolor2) 0);
-  }
-  &-animated {
-    --Zpos: 0%;
-    background: conic-gradient(var(--Zcolor1) var(--Zpos),var(--Zcolor2) 0);
-    animation: render2 .5s ease-in 1 forwards;
-  }
-  @keyframes render {
-    to {
-      --Zpos: var(--percentage);
-    }
-  }
-  @keyframes render2 {
-    to {
-      --Zpos: var(--percentage);
-    }
-  }
+  // &-firstAnimate {
+  //   animation: render 2s ease-in infinite;
+  //   animation-delay: 1s;
+  //   &::before{
+  //     content: unset;
+  //   }
+  // }
 }
 
