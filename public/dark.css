@@ -12,6 +12,14 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
   color: #bababa;
 }
 
+code {
+  background-color: #b9b9b9;
+  padding: 10px 5px;
+  display: inline-block;
+  color: black;
+  width: 100%;
+  font-size: 14px;
+}
 .hljs-strong,
 .hljs-emphasis {
   color: #a8a8a2;
