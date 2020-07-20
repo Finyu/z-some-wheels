@@ -50,6 +50,10 @@
       {
         "label": "zRing 旋转背景",
         "path": "/zRing"
+      },
+      {
+        "label": "zTabs 标签页",
+        "path": "/zTabs"
       }
     ]
   }

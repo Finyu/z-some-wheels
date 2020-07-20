@@ -1,16 +1,18 @@
-## zMonth单月日历组件
+## zTabs标签页
 
-可以展示具体某个月的日历，附带农历信息
 
 ### 用法
 
 
-:::demo `dateClick`返回点击的具体日期。
+:::demo 
 ```html
 <template>
-  <div class='monthsBox'>
-    <z-month  @dateClick='dateClick' :month="'2019-1'">
-    </z-month>
+  <div class='tabsBox'>
+    <z-tabs :name='name'>
+      <tabs v-for = 'item  in  arr' :label='"管理" + item'  :name='item'>
+        {{item}}
+      </tabs>
+    </z-tabs>
   </div>
 </template>
 
@@ -18,6 +20,8 @@
   export default {
     data() {
       return {
+        arr: ['1', '2', '3'],
+        name: '1'
       }
     },
     methods:{
@@ -30,6 +34,10 @@
 </script>
 
 <style lang='scss'>
+  .tabsBox {
+    height: 400px;
+    width: 100%;
+  }
 </style>
 
 ```

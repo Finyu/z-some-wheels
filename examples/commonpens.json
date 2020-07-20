@@ -46,5 +46,9 @@
   {
     "label": "zRing 旋转背景",
     "com": "zRing"
+  },
+  {
+    "label": "zTabs 标签页",
+    "com": "zTabs"
   }
 ]
