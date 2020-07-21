@@ -53,3 +53,43 @@ export default {
 
 ```
 :::
+
+### 递归遍历查找节点
+
+:::demo ctrl + c 香啊
+```html
+<template>
+  <p>
+    {{fn([{id :1}, {id: 2}], 2)}}
+  </p>
+</template>
+
+<script>
+export default { 
+  methods: {
+    fn: function(arr, id) {
+      let node,
+          state = false
+      fn (arr, id)
+      return node 
+
+      function fn (arr, id){
+        for (let i = 0; i < arr.length; i ++ ) {
+          if (state) return
+          if (arr[i].id === id) {
+            state = true
+            node = arr[i]
+            return
+          }
+          arr[i].children && fn(arr[i].children, id)
+        }
+      }
+    }
+  }
+}
+</script>
+
+
+```
+:::
+

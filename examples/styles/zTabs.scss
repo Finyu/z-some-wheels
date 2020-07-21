@@ -1,26 +1,62 @@
 .tabsBox {
-  height: 400px;
+  height: 200px;
   width: 100%;
 }
+
 
 .z-tabs{
   width: 100%;
   height: 100%;
+  padding: 0 20px;
+  box-sizing:border-box;
   .z-tabs-title {
     height: 48px;
     line-height: 48px;
     border-bottom: 2px solid #888888 ;
     width: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    .el-icon-arrow-right {
+      position: absolute;
+      right: -10px;
+      top: 24px;
+    }
+    .z-tabs-title-box {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 100%;
+    }
+    .z-tabs-title-bottom {
+      width: 50px;
+      height: 3px;
+      background-color: #409eff;
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      transition: all .2s;
+    }
   }
   .z-tabs-title-name {
-    display: inline-block;
+    display: block;
     font-size: 14px;
     font-weight: 600;
-    margin: 0 20px;
-    padding: 10px 12px;
+    height: 100%;
+    margin-left: 30px;
     cursor: pointer;
+    white-space: nowrap;
+    line-height: 48px;
     &.active {
-      color: red;
+      color: #409eff;
     }
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+  .z-tabs-content {
+    margin-top: 12px;
   }
 }

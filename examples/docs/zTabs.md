@@ -8,10 +8,17 @@
 ```html
 <template>
   <div class='tabsBox'>
-    <z-tabs :name='name'>
-      <tabs v-for = 'item  in  arr' :label='"管理" + item'  :name='item'>
-        {{item}}
-      </tabs>
+    <z-tabs v-model='name' @tabClick='tabClick'>
+      <z-tab-pane label='标签页1'  name='1' >
+        <zButton type='3'>按钮1</zButton>
+      </z-tab-pane>
+      <z-tab-pane label='标签页2'  name='2' >
+        <zButton type='3'>按钮2</zButton>
+      </z-tab-pane>
+      <z-tab-pane label='标签页3'  name='3' >
+        <zButton type='3'>按钮3</zButton>
+      </z-tab-pane>
+      </z-tab-pane>
     </z-tabs>
   </div>
 </template>
@@ -25,8 +32,7 @@
       }
     },
     methods:{
-      dateClick(data){
-        console.log(data)
+      tabClick(data){
       }
     },
     computed: {},
@@ -35,7 +41,7 @@
 
 <style lang='scss'>
   .tabsBox {
-    height: 400px;
+    height: 200px;
     width: 100%;
   }
 </style>
@@ -47,9 +53,9 @@
 ### 参数
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
-| month | 渲染的月份如：2019-1 | string | — | --- |
+| v-model | 标签页的name | string | — | first |
 
 ### 事件
 | 参数      | 说明          | 类型      | 返回值  |
 |---------- |-------------- |----------  |-------- |
-| dateClick | 点击日期对象触发 | function |  具体日期如： 2019-1-1 |
+| tabClick | 点击标签标题触发 | function |  具体日期如： 标签页对应的name |

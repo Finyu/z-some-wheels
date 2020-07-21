@@ -6,8 +6,9 @@ import zPiechart from './zPiechart/index.js'
 import fullScreen from './fullScreen/index.js'
 import zRing from './zRing/index.js'
 import zTabs from './zTabs/index.js'
+import zTabPane from './TabPane/index.js'
 
-const components =  [zTree, zMonth, zButton, zPiechart, zRing, zTabs]
+const components =  [zTree, zMonth, zButton, zPiechart, zRing, zTabs, zTabPane]
 
 const install = function(Vue, opts = {}) {
   Vue.use(fullScreen)
@@ -22,10 +23,12 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '1.0.0',
+  version: '1.1.1',
   install,
   zTree,
   zMonth,
   zButton,
-  zPiechart
+  zPiechart,
+  zTabs,
+  zTabPane
 }
