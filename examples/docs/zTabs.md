@@ -7,17 +7,11 @@
 :::demo 
 ```html
 <template>
-  <div class='tabsBox'>
-    <z-tabs v-model='name' @tabClick='tabClick'>
-      <z-tab-pane label='标签页1'  name='1' >
-        <zButton type='3'>按钮1</zButton>
-      </z-tab-pane>
-      <z-tab-pane label='标签页2'  name='2' >
-        <zButton type='3'>按钮2</zButton>
-      </z-tab-pane>
-      <z-tab-pane label='标签页3'  name='3' >
-        <zButton type='3'>按钮3</zButton>
-      </z-tab-pane>
+  <div class='tabsBox' >
+    <z-tabs ref='ads' v-model='name' @tabClick='tabClick'>
+      {{arr}}
+      <z-tab-pane :label='"标签页" + index' v-for='(item, index) in  arr'  :name='index' >
+        <zButton type='3' >按钮{{index}}</zButton>
       </z-tab-pane>
     </z-tabs>
   </div>
@@ -27,12 +21,13 @@
   export default {
     data() {
       return {
-        arr: ['1', '2', '3'],
-        name: '1'
+        arr: [1,2,3],
+        name: 1
       }
     },
     methods:{
       tabClick(data){
+        
       }
     },
     computed: {},

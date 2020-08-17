@@ -1,19 +1,3 @@
-<template>
-  <div class='z-tabs'>
-    <div class='z-tabs-title'>
-      <div class='z-tabs-title-bottom'></div>
-      <i class='el-icon-arrow-right'></i>
-      <div class='z-tabs-title-box'>
-        <span class='z-tabs-title-name' @click='tabClick(item)' v-for='item in attrs' :key='item.label' :class='{"active": item.name  === name}'>{{item.label}}</span>
-      </div>
-    </div>
-    <div class='z-tabs-content'>
-      <slot></slot>
-      <slot :name='name'></slot>
-    </div>
-  </div>
-</template>
-
 <script>
 import pane from './tab-pane.vue'
 export default {
@@ -29,8 +13,13 @@ export default {
     }
   },
   watch:{
-    'name' (){
-      this.queSlot()
+    '$attrs.value' (nv){
+      this.name = nv
+    }
+  },
+  computed: {
+    soltContent(){
+      return this.$slots.default.find(item => item.data && item.data.attrs.name === this.name)
     }
   },
   components: {
@@ -42,17 +31,6 @@ export default {
       this.$emit('tabClick', item.name)
       this.$emit('input', item.name)
       this.$nextTick(this.setBottom)
-    },
-    // 重新分配插槽
-    queSlot(){
-      for (let  i = 0;  i < this.$slots.default.length; i ++) {
-        let item = this.$slots.default[i]
-        if (item.tag == undefined || item.tag.indexOf('z-tab-pane') === -1) continue
-        let {name, label} = item.data.attrs
-        this.$slots[name] = item
-        this.$slots.default.splice(i, 1)
-        i --
-      }
     },
     // 计算底部active线条位置 
     setBottom() {
@@ -70,23 +48,74 @@ export default {
         this.shouldStretch = true
       }
       this.setBottom()
+    },
+    init(){
+      let contents = []
+      let attrs = this.$slots.default.filter(
+        item => item.tag && item.tag.indexOf('z-tab-pane') > -1
+      )
+      if (attrs.length === this.attrs.length &&
+        attrs.every((item, index) => item.key === this.attrs[index].key)
+      ) {
+        // 防止进入updata的死循环
+        return
+      }
+      this.attrs = attrs.map(item => { return {name: item.data.attrs.name, label: item.data.attrs.label, key: item.key} })
+      // attrs.forEach(item => {
+      //   this.$slots[item.data.attrs.name] = item
+      // })
+      console.log(this.$slots)
+      this.$nextTick(this.checkWidth)
     }
   },
   created() {
-    let attrs = []
-    let contents = []
     this.name = this.$attrs.value
-    for (let  i = 0;  i < this.$slots.default.length; i ++) {
-      let item = this.$slots.default[i]
-      if (item.tag == undefined || item.tag.indexOf('z-tab-pane') === -1) continue
-      let {name, label} = item.data.attrs
-      this.$slots[name] = item
-      this.$slots.default.splice(i, 1)
-      i --
-      attrs.push({name, label})
-    }
-    this.attrs = attrs
-    this.$nextTick(this.checkWidth)
+    this.init()
+  },
+  updated(){
+    this.init()
+  },
+  render(h) {
+    let that = this
+    return h(
+      'div',{
+        class: 'z-tabs'
+      },
+      [
+        h(
+          'div',
+          {
+            class: 'z-tabs-title'
+          },
+          [
+            h(
+              'div',
+              {
+                class: 'z-tabs-title-box'
+              },
+              that.attrs.map(item => h(
+                'span',
+                {
+                  on: { 
+                    click: () => { that.tabClick(item) }
+                  },
+                  class: { 'active':  item.name  === that.name},
+                  key: item.key
+                },
+                item.label
+              ))
+            )
+          ]
+        ),
+        h(
+          'div',
+          {
+            class: 'z-tabs-content'
+          },
+          that.soltContent
+        )
+      ]
+    )
   }
 }
 </script>
