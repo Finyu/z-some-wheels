@@ -9,7 +9,6 @@
 <template>
   <div class='tabsBox' >
     <z-tabs ref='ads' v-model='name' @tabClick='tabClick'>
-      {{arr}}
       <z-tab-pane :label='"标签页" + index' v-for='(item, index) in  arr'  :name='index' >
         <zButton type='3' >按钮{{index}}</zButton>
       </z-tab-pane>
@@ -27,7 +26,7 @@
     },
     methods:{
       tabClick(data){
-        
+        // this.arr.push(1)
       }
     },
     computed: {},

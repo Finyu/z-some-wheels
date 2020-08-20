@@ -9,17 +9,13 @@ export default {
       name: 'first',
       attrs: [],
       shouldStretch: false,
-      contents: []
+      contents: [],
+      soltContent: null
     }
   },
   watch:{
     '$attrs.value' (nv){
       this.name = nv
-    }
-  },
-  computed: {
-    soltContent(){
-      return this.$slots.default.find(item => item.data && item.data.attrs.name === this.name)
     }
   },
   components: {
@@ -54,6 +50,8 @@ export default {
       let attrs = this.$slots.default.filter(
         item => item.tag && item.tag.indexOf('z-tab-pane') > -1
       )
+      this.soltContent = attrs.find(item => item.data.attrs.name === this.name)
+
       if (attrs.length === this.attrs.length &&
         attrs.every((item, index) => item.key === this.attrs[index].key)
       ) {
@@ -61,10 +59,6 @@ export default {
         return
       }
       this.attrs = attrs.map(item => { return {name: item.data.attrs.name, label: item.data.attrs.label, key: item.key} })
-      // attrs.forEach(item => {
-      //   this.$slots[item.data.attrs.name] = item
-      // })
-      console.log(this.$slots)
       this.$nextTick(this.checkWidth)
     }
   },
@@ -99,20 +93,27 @@ export default {
                   on: { 
                     click: () => { that.tabClick(item) }
                   },
-                  class: { 'active':  item.name  === that.name},
+                  class: { 'active':  item.name  === that.name, 'z-tabs-title-name': true},
                   key: item.key
                 },
                 item.label
               ))
+            ),
+            h(
+              'div',
+              {
+                class: 'z-tabs-title-bottom'
+              }
+              
             )
           ]
         ),
         h(
           'div',
           {
-            class: 'z-tabs-content'
+            class: 'z-tabs-content',
           },
-          that.soltContent
+          [ ...that.$slots.default.filter(item => !item.tag || item.tag.indexOf('z-tab-pane') === -1), that.soltContent]
         )
       ]
     )
