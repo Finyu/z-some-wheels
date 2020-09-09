@@ -1,6 +1,7 @@
 .tabsBox {
   height: 200px;
   width: 100%;
+  overflow: hidden;
 }
 
 .z-tabs {
@@ -8,6 +9,41 @@
   height: 100%;
   padding: 0 20px;
   box-sizing: border-box;
+  position: relative;
+}
+
+.z-tabs .el-icon-arrow-right {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  font-size: 10px;
+  cursor: pointer;
+  color: #999999;
+}
+
+.z-tabs .el-icon-arrow-right::before {
+  content: '>';
+}
+
+.z-tabs .el-icon-arrow-right.show {
+  color: black;
+}
+
+.z-tabs .el-icon-arrow-left {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  font-size: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.z-tabs .el-icon-arrow-left::before {
+  content: '<';
+}
+
+.z-tabs .el-icon-arrow-left.show {
+  display: block;
 }
 
 .z-tabs .z-tabs-title {
@@ -20,24 +56,13 @@
   position: relative;
 }
 
-.z-tabs .z-tabs-title .el-icon-arrow-right {
-  position: absolute;
-  right: -10px;
-  top: 24px;
-}
-
-.z-tabs .z-tabs-title .el-icon-arrow-left {
-  position: absolute;
-  left: -10px;
-  top: 24px;
-}
-
 .z-tabs .z-tabs-title .z-tabs-title-box {
   position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   height: 100%;
+  transition: all .5s;
 }
 
 .z-tabs .z-tabs-title .z-tabs-title-bottom {
@@ -48,7 +73,7 @@
   position: absolute;
   bottom: -2px;
   left: 0;
-  transition: all .2s;
+  transition: all .5s;
 }
 
 .z-tabs .z-tabs-title-name {

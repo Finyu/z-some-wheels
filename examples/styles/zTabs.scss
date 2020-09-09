@@ -1,6 +1,7 @@
 .tabsBox {
   height: 200px;
   width: 100%;
+  overflow: hidden;
 }
 
 
@@ -9,6 +10,35 @@
   height: 100%;
   padding: 0 20px;
   box-sizing:border-box;
+  position: relative;
+  .el-icon-arrow-right {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    font-size: 10px;
+    cursor: pointer;
+    color: #999999;
+    &::before {
+      content: '>';
+    }
+    &.show {
+      color: black;
+    }
+  }
+  .el-icon-arrow-left {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    font-size: 10px;
+    cursor: pointer;
+    display: none;
+    &::before {
+      content: '<';
+    }
+    &.show {
+      display: block;
+    }
+  }
   .z-tabs-title {
     height: 48px;
     line-height: 48px;
@@ -17,22 +47,13 @@
     display: flex;
     overflow: hidden;
     position: relative;
-    .el-icon-arrow-right {
-      position: absolute;
-      right: -10px;
-      top: 24px;
-    }
-    .el-icon-arrow-left {
-      position: absolute;
-      left: -10px;
-      top: 24px;
-    }
     .z-tabs-title-box {
       position: relative;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       height: 100%;
+      transition: all .5s;
     }
     .z-tabs-title-bottom {
       width: 50px;
@@ -42,7 +63,7 @@
       position: absolute;
       bottom: -2px;
       left: 0;
-      transition: all .2s;
+      transition: all .5s;
     }
   }
   .z-tabs-title-name {

@@ -10,7 +10,9 @@ export default {
       attrs: [],
       shouldStretch: false,
       contents: [],
-      soltContent: null
+      soltContent: null,
+      canClickLeft: false,
+      canClickRight: true
     }
   },
   watch:{
@@ -32,16 +34,28 @@ export default {
     setBottom() {
       let el = this.$el
       el = el.getElementsByClassName('z-tabs-title-name active')[0]
-      let solid = this.$el.getElementsByClassName('z-tabs-title-bottom')[0]
-      solid.setAttribute('style', `width: ${el.offsetWidth}px; left: ${el.offsetLeft}px`)
+      let box = this.$el.getElementsByClassName('z-tabs-title-box')[0],
+          solid = this.$el.getElementsByClassName('z-tabs-title-bottom')[0],
+          num =  box.style.transform ? +box.style.transform.split('(')[1].split('px')[0] : 0
+      solid.setAttribute('style', `width: ${el.offsetWidth}px; left: ${el.offsetLeft}px; transform: translateX(${num}px);`)
     },
     // 检查标签宽度总和是否超过父元素的宽度
     checkWidth(){
       this.shouldStretch = false
       let boxFather = this.$el.getElementsByClassName('z-tabs-title')[0]
       let box = this.$el.getElementsByClassName('z-tabs-title-box')[0]
+      // 如果初始化以后，active选项不在第一页，需要自动找过去
+      let el = this.$el.getElementsByClassName('z-tabs-title-name active')[0],
+          widthLeft = parseInt(el.offsetLeft / boxFather.offsetWidth) * boxFather.offsetWidth
+      box.style.transform = `translateX(${-widthLeft}px)`
       if (boxFather.offsetWidth < box.offsetWidth) {
         this.shouldStretch = true
+      }
+      if (boxFather.offsetWidth > box.offsetWidth - widthLeft) {
+        this.canClickRight = false
+      }
+      if (widthLeft > 0) {
+        this.canClickLeft = true
       }
       this.setBottom()
     },
@@ -60,6 +74,18 @@ export default {
       }
       this.attrs = attrs.map(item => { return {name: item.data.attrs.name, label: item.data.attrs.label, key: item.key} })
       this.$nextTick(this.checkWidth)
+    },
+    tabClickNext(state) {
+      // 标题长度超过容器宽度时，翻页用，state = false向左翻页，true向右
+      let boxFatherWidth = this.$el.getElementsByClassName('z-tabs-title')[0].offsetWidth
+      let box = this.$el.getElementsByClassName('z-tabs-title-box')[0]
+      let num =  box.style.transform ? +box.style.transform.split('(')[1].split('px')[0] : 0,
+          solid =  this.$el.getElementsByClassName('z-tabs-title-bottom')[0],
+          numRes = num + (state ? - boxFatherWidth : boxFatherWidth) 
+      box.style.transform = `translateX(${numRes}px)`
+      solid.style.transform = `translateX(${numRes}px)`
+      this.canClickLeft = numRes < 0
+      this.canClickRight = Math.abs(numRes) + boxFatherWidth < box.offsetWidth
     }
   },
   created() {
@@ -114,7 +140,27 @@ export default {
             class: 'z-tabs-content',
           },
           [ ...that.$slots.default.filter(item => !item.tag || item.tag.indexOf('z-tab-pane') === -1), that.soltContent]
-        )
+        ),
+        that.shouldStretch && h(
+          'i',
+          {
+            class: ['el-icon-arrow-left', that.canClickLeft && 'show'],
+            on: {
+              click: () => { that.canClickLeft && that.tabClickNext(false)}
+            }
+          }
+          
+        ),
+        that.shouldStretch && h(
+          'i',
+          {
+            class: ['el-icon-arrow-right', that.canClickRight && 'show'],
+            on: {
+              click: () => {  that.canClickRight && that.tabClickNext(true)}
+            }
+          }
+          
+        ),
       ]
     )
   }
