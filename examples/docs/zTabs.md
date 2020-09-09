@@ -10,8 +10,48 @@
   <div class='tabsBox' >
     <z-tabs ref='ads' v-model='name' @tabClick='tabClick'>
       <z-tab-pane :label='"标签页" + index' v-for='(item, index) in  arr'  :name='index' >
-        <zButton type='3' >按钮{{index}}</zButton>
+        <zButton type='3' @onClick='tabClick'>按钮{{index}}</zButton>
       </z-tab-pane>
+    </z-tabs>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        arr: [0, 1, 2],
+        name: 2
+      }
+    },
+    methods:{
+      tabClick(data){
+      }
+    },
+    computed: {},
+  }
+</script>
+
+<style lang='scss'>
+  .tabsBox {
+    height: 200px;
+    width: 100%;
+  }
+</style>
+
+```
+:::
+
+### 外部修改value
+
+:::demo 
+```html
+<template>
+  <div class='tabsBox' >
+    <z-tabs ref='ads' v-model='name' @tabClick='tabClick'>
+      <z-tab-pane :label='"标签页" + index' v-for='(item, index) in  arr'  :name='index' >
+      </z-tab-pane>
+      <zButton type='3' @onClick='name++'> name ++ </zButton>
     </z-tabs>
   </div>
 </template>
@@ -41,7 +81,6 @@
 
 ```
 :::
-
 
 ### 参数
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |

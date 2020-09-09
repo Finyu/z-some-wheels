@@ -18,6 +18,7 @@ export default {
   watch:{
     '$attrs.value' (nv){
       this.name = nv
+      this.$nextTick(this.checkWidth)
     }
   },
   components: {
@@ -45,8 +46,12 @@ export default {
       let boxFather = this.$el.getElementsByClassName('z-tabs-title')[0]
       let box = this.$el.getElementsByClassName('z-tabs-title-box')[0]
       // 如果初始化以后，active选项不在第一页，需要自动找过去
-      let el = this.$el.getElementsByClassName('z-tabs-title-name active')[0],
-          widthLeft = parseInt(el.offsetLeft / boxFather.offsetWidth) * boxFather.offsetWidth
+      let el = this.$el.getElementsByClassName('z-tabs-title-name active')[0]
+      if (!el)  {
+        console.error('找不到绑定值对应标签页 ---zTabs')
+        return
+      }
+      let widthLeft = parseInt(el.offsetLeft / boxFather.offsetWidth) * boxFather.offsetWidth
       box.style.transform = `translateX(${-widthLeft}px)`
       if (boxFather.offsetWidth < box.offsetWidth) {
         this.shouldStretch = true
