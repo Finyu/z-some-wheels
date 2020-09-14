@@ -26,13 +26,13 @@ fullScreen.install = Vue => {
         el.classList.add("fullScreen-Content")
       })
 
-     },
+    },
     update: function(el, binding, vnode, oldvnode) {
-     if(binding.value === true && el) {
-      vnode.context.$parent.fullScreen = true
-      let [clientWidth, clientHeight] = [el.clientWidth, el.clientHeight]
-      let [innerWidth, innerHeight] = [window.innerWidth, window.innerHeight]
-     }
+      if(binding.value === true && el) {
+        vnode.context.$parent.fullScreen = true
+        let [clientWidth, clientHeight] = [el.clientWidth, el.clientHeight]
+        let [innerWidth, innerHeight] = [window.innerWidth, window.innerHeight]
+      }
     }
   })
 }
